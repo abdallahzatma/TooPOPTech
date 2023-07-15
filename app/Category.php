@@ -13,4 +13,8 @@ class Category extends Model
     {
         return $this->attributes['status'] == 0 ? 'active' : 'inactive';
     }
+    public function Books()
+    {
+        return $this->hasOne(Category::class);
+    }
 }
