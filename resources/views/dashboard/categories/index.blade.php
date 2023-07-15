@@ -51,7 +51,7 @@
 
     </tbody>
   </table>
+  {{ $categories->links() }}
 
 @endsection
-{{ $categories->links() }}
 
