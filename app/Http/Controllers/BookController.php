@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -14,7 +15,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('dashboard.books.index');
+        $books = Book::paginate();
+
+        return view('dashboard.books.index',compact('books'));
+    
     }
 
     /**
@@ -24,7 +28,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('dashboard.books.create',compact( 'categories'));
     }
 
     /**
@@ -35,7 +40,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'author_name' => 'required|string',
+            'publication_date' => 'required|date',
+            'description' => 'required|string',
+            'Price' => 'required|numeric',
+        ]);
+     
+        $book = Book::create($request->all());
+    
+        return redirect()->route('dashboard.books.index')->with('success', 'Book created successfully!');
     }
 
     /**
@@ -57,7 +72,10 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+   
+        $categories = Category::all();
+    
+        return view('dashboard.books.edit', compact('book', 'categories'));
     }
 
     /**
@@ -69,7 +87,18 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'author_name' => 'required|string',
+            'publication_date' => 'required|date',
+            'description' => 'required|string',
+            'Price' => 'required|numeric',
+        ]);
+    
+    
+        $book->update($request->all());
+    
+        return redirect()->route('dashboard.books.index')->with('success', 'Book updated successfully!');
     }
 
     /**
@@ -80,6 +109,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        {
+  
+            $book->delete();
+            return redirect()->route('dashboard.books.index')->with('success','Delete done!');
+    
+        }
     }
 }
