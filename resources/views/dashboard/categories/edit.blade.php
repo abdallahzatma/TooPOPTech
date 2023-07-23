@@ -23,6 +23,20 @@
         <label for="">Name</label>
         <input name="name" type="text" class="form-control" value="{{ old('name',$category->name) }}">
     </div>
+    <div class="form-group">
+        <label for="category_id">{{ __('Category Parent') }}</label>
+        <select id="category_id" class="form-control @error('category_id') is-invalid @enderror" name="parent_id" >
+            <option value="">--No parent --</option>
+            @foreach($parents as $item)
+                <option value="{{ $item->id }}" @selected($item->id == $category->parent_id)>{{ $item->name }}</option>
+            @endforeach
+        </select>
+        @error('category_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
     <div>
         <label for="">Status</label>
         <input name="status" value="0" type="radio" @checked(old('status',$category->status) == "active")>

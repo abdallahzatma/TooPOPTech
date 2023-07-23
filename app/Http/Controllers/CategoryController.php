@@ -27,7 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create');
+        $parents = Category::all();
+
+        return view('dashboard.categories.create',compact('parents'));
     }
 
     /**
@@ -77,8 +79,13 @@ return redirect()->route('dashboard.categories.index')->with('success','insert d
      */
     public function edit(Category $category)
     {
-   
-        return view('dashboard.categories.edit',compact('category'));
+        $id = $category->id;
+        $parents = Category::where('id', '<>', $category->id)
+        ->where(function($query) use ($id) {
+            $query->whereNull('parent_id')
+                  ->orWhere('parent_id', '<>', $id);
+        });
+        return view('dashboard.categories.edit',compact('category','parents'));
     }
 
     /**
