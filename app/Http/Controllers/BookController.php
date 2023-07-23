@@ -28,7 +28,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::whereNotNull('parent_id')->get();
         return view('dashboard.books.create',compact( 'categories'));
     }
 

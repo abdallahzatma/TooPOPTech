@@ -79,12 +79,10 @@ return redirect()->route('dashboard.categories.index')->with('success','insert d
      */
     public function edit(Category $category)
     {
-        $id = $category->id;
-        $parents = Category::where('id', '<>', $category->id)
-        ->where(function($query) use ($id) {
-            $query->whereNull('parent_id')
-                  ->orWhere('parent_id', '<>', $id);
-        });
+        
+        $parents = Category::where('id', '<>', $category->id)->whereNull('parent_id')->orWhere('parent_id', '<>',  $category->id)->where('id', '<>', $category->id)->get();
+
+      
         return view('dashboard.categories.edit',compact('category','parents'));
     }
 
