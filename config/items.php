@@ -3,13 +3,13 @@ return[
 
 [
 'route'=> 'dashboard.',
-'title' => 'Dashboard',
+'title' => 'dashboard',
 'icon' => 'far fa-circle nav-icon',
 
 ],
 [
     'route'=> 'dashboard.books.index',
-    'title' => 'Books',
+    'title' => 'books',
     'icon' => 'far fa-circle nav-icon',
 
     ],
@@ -20,4 +20,5 @@ return[
 
         ],
 
+        
 ];

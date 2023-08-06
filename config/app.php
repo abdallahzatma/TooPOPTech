@@ -17,6 +17,17 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'middleware' => [
+        \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationMiddlewareBase::class,
+    ],
+
+
+    'locales' => [
+        'en' => 'English',
+        'ar' => 'Arabic',
+        // يمكنك إضافة لغات أخرى هنا
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -163,6 +174,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -191,6 +204,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         // ...
     ])->toArray(),
 

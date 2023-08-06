@@ -18,7 +18,9 @@
             <li class="nav-item">
                 <a href="{{ route($item['route'] )}}" class="nav-link {{ $active == $item['route'] ? "active" : "" }}">
                   <i class="{{ $item['icon'] }}"></i>
-                  <p>{{ $item['title'] }}</p>
+               <label hidden type="text">   {{$a= $item['title'] }}</label>
+    
+                  <p>@lang("site.$a")</p>
                 </a>
               </li>
             @endforeach
