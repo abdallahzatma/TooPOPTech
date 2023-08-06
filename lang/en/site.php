@@ -64,6 +64,7 @@ return [
     'title'=>'Title',
     'start_date'=>'Start Date',
     'end_date'=>'End Date',
-    'contact' => 'Contact'
+    'contact' => 'Contact',
+    'translation' => 'Translation'
     
 ];

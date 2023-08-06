@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('translations', function (Blueprint $table) {
             $table->id();
-            $table->string('locale');
-            $table->string('key');
-            $table->text('value');
+            $table->text('source_text');
+            $table->text('arabic_translation')->nullable();
+            $table->text('english_translation')->nullable();
+            $table->text('french_translation')->nullable();
             $table->timestamps();
         });
     }

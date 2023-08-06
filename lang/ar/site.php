@@ -66,7 +66,9 @@ return [
     'end_date'=>'تاريخ النهاية',
     'silders'=>'المعرض',
     'silder'=>'المعرض',
-    'contact' => 'الإتصال'
+    'contact' => 'الإتصال',
+    'translation' => 'الترجمات'
+
 
 
 ];
